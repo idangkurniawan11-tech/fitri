@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Game Mobile Legends</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            color: #eee;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #9131e0;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 5px #000;
+        }
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 20px 50px;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        h2 {
+            color:#9131e0;
+            border-bottom: 3px solid #9131e0;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        .hero-list {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .hero {
+            background: #2c2c2c;
+            border-radius: 12px;
+            width: 180px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 0 8px #9131e0(224, 60, 49, 0.7);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .hero:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #9131e0;
+        }
+        .hero img {
+            width: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .hero-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        .hero-role {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: #ffbaba;
+        }
+        #hero-detail {
+            background: #2c2c2c;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px #9131e0;
+            max-width: 700px;
+            margin: 0 auto;
+            display: none;
+        }
+        #hero-detail h3 {
+            margin-top: 0;
+            color: #9131e0;
+        }
+        #close-btn {
+            background: #9131e0;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            float: right;
+            font-weight: bold;
+        }
+        #close-btn:hover {
+            background: #9131e0;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #111;
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mobile Legends: Bang Bang</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Apa itu Mobile Legends?</h2>
+            <p>Mobile Legends adalah game mobile bergenre Multiplayer Online Battle Arena (MOBA) yang sangat populer. Pemain bertarung dalam tim 5 lawan 5 dengan tujuan menghancurkan base lawan sambil mempertahankan base sendiri. Game ini memiliki banyak hero unik dengan berbagai kemampuan dan role berbeda.</p>
+        </section>
+
+        <section>
+            <h2>Hero Populer</h2>
+            <div class="hero-list">
+                <div class="hero" onclick="showHeroDetail('Alucard')">
+                    <img src="alucard.jpg" alt="Alucard" />
+                    <div class="hero-name">Alucard</div>
+                    <div class="hero-role">Fighter / Assassin</div>
+                </div>
+                <div class="hero" onclick="showHeroDetail('Layla')">
+                    <img src="layla.jpg" alt="Layla" />
+                    <div class="hero-name">Layla</div>
+                    <div class="hero-role">Marksman</div>
+                </div>
+                <div class="hero" onclick="showHeroDetail('Eudora')">
+                    <img src="eudora.webp" alt="Eudora" />
+                    <div class="hero-name">Eudora</div>
+                    <div class="hero-role">Mage</div>
+                </div>
+                <div class="hero" onclick="showHeroDetail('Tigreal')">
+                    <img src="tigreal.jpg" alt="Tigreal" />
+                    <div class="hero-name">Tigreal</div>
+                    <div class="hero-role">Tank</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hero-detail">
+            <button id="close-btn" onclick="closeHeroDetail()">X</button>
+            <h3 id="hero-name"></h3>
+            <p id="hero-description"></p>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 Mobile Legends Info Web
+    </footer>
+
+    <script>
+        const heroData = {
+            "Alucard": {
+                name: "Alucard",
+                role: "Fighter / Assassin",
+                description: "Alucard adalah hero fighter dan assassin yang kuat dalam pertempuran jarak dekat. Dia memiliki kemampuan lifesteal tinggi dan damage burst besar, cocok untuk melawan musuh dengan cepat."
+            },
+            "Layla": {
+                name: "Layla",
+                role: "Marksman",
+                description: "Layla adalah marksman dengan damage jarak jauh yang mematikan. Dia sangat efektif dalam memberikan damage dari belakang dan melindungi tim dengan serangan jarak jauhnya."
+            },
+            "Eudora": {
+                name: "Eudora",
+                role: "Mage",
+                description: "Eudora adalah mage dengan kemampuan serangan listrik yang bisa stun musuh. Cocok untuk membunuh lawan dengan cepat dan mendukung tim dalam teamfight."
+            },
+            "Tigreal": {
+                name: "Tigreal",
+                role: "Tank",
+                description: "Tigreal adalah tank yang tangguh dan bisa mengendalikan pertempuran dengan skill crowd control-nya. Dia sangat baik dalam melindungi tim dan membuka peluang serangan."
+            }
+        };
+
+        function showHeroDetail(heroKey) {
+            const hero = heroData[heroKey];
+            if (!hero) return;
+
+            document.getElementById('hero-name').textContent = hero.name + " - " + hero.role;
+            document.getElementById('hero-description').textContent = hero.description;
+            document.getElementById('hero-detail').style.display = 'block';
+            window.scrollTo({ top: document.getElementById('hero-detail').offsetTop, behavior: 'smooth' });
+        }
+
+        
